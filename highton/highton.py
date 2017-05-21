@@ -487,7 +487,7 @@ class Highton(object):
         deletions = []
         for deletion in _deletions:
             data = {}
-            data['type'] = deletion.attrib.values()[0]
+            data['type'] = list(deletion.attrib.values())[0]
             for sub in deletion:
                 data[sub.tag] = sub.text
             temp = Deletion()
@@ -516,7 +516,7 @@ class Highton(object):
             you dont get only the first 500)
         """
         params = {}
-        for key, value in criteria.items():
+        for key, value in list(criteria.items()):
             params['criteria['+key+']'] = value
         return self._get_object_data(self._get_paged_data('people/search', params=params), Person)
     
